@@ -27,7 +27,7 @@ class index_bucket:
         self.cold_shards = 0
         self.cold_bytes = 0
     def __iter__(self):
-        return iter([self.tmsp,self.cluster_name, self.index, 
+        return iter([self.tmsp,self.cluster_name, self.index, self.indexCnt,
                 self.total_docs, self.total_shards, self.total_bytes, 
                 self.hot_docs, self.hot_shards, self.hot_bytes, 
                 self.warm_docs, self.warm_shards, self.warm_bytes, 
@@ -83,7 +83,7 @@ def my_function(node,attribute,hot,warm,cold):
             bucket.total_docs += int(index["docs.count"])
             bucket.total_shards += int(index["pri"])
 
-            bucket.indexCnt ++
+            bucket.indexCnt++
             
             # get shards for current index
             shards = es.cat.shards( format="json",bytes="b",index=index["index"])

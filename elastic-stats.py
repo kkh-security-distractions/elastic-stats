@@ -82,6 +82,8 @@ def my_function(node,attribute,hot,warm,cold):
             bucket.total_bytes += int(index["pri.store.size"]) 
             bucket.total_docs += int(index["docs.count"])
             bucket.total_shards += int(index["pri"])
+
+            bucket.indexCnt ++
             
             # get shards for current index
             shards = es.cat.shards( format="json",bytes="b",index=index["index"])

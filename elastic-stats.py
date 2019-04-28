@@ -13,6 +13,7 @@ class index_bucket:
         self.tmsp = datetime.datetime.now()
         self.cluster_name = ""
         self.index = ""
+        self.indexCnt = 0
         self.total_docs = 0
         self.total_shards = 0
         self.total_bytes = 0

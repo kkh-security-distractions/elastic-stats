@@ -41,8 +41,22 @@ class index_bucket:
 
 
 
-def my_function(node,attribute,hot,warm,cold):
-    es = Elasticsearch(hosts=[node])
+def my_function(node,attribute,hot,warm,cold,user,password,ssl):
+
+
+    if ssl:
+        myscheme = "https"
+    else:
+        myscheme = "http"    
+
+    if user != "":
+        es = Elasticsearch(hosts=[node],
+            http_auth=(user, password),
+            scheme = myscheme
+            )  
+
+    else:
+        es = Elasticsearch(hosts=[node])
 
     h2 = es.cluster.health(format="json")
 
@@ -81,6 +95,8 @@ def my_function(node,attribute,hot,warm,cold):
                 bucket = index_bucket()
                 bucket.cluster_name = h2["cluster_name"]
                 bucket.index = bucket_name
+                bucket.first_index = index
+                bucket.last_index = index
                 all_buckets.append(bucket)
 
             # sum up the totals
@@ -88,7 +104,9 @@ def my_function(node,attribute,hot,warm,cold):
             bucket.total_docs += int(index["docs.count"])
             bucket.total_shards += int(index["pri"])
 
-            bucket.indexCnt++
+            bucket.last_index = index
+
+            bucket.indexCnt += 1
             
             # get shards for current index
             shards = es.cat.shards( format="json",bytes="b",index=index["index"])
@@ -123,7 +141,7 @@ if __name__== "__main__":
     parser = argparse.ArgumentParser(description='Generate Elasticsearch stats.')
     parser.add_argument('-n', '--node',
         action="store", dest="node",
-        help="node", default="172.17.11.115")
+        help="node", default="192.168.96.244")
     parser.add_argument('-f', '--format',
         action="store", dest="format",
         help="output format", default="csv")
@@ -163,7 +181,7 @@ if __name__== "__main__":
     all_buckets = []
 
     try:
-        my_function(args.node,args.attribute,args.hot,args.warm,args.cold)
+        my_function(args.node,args.attribute,args.hot,args.warm,args.cold,args.user,args.password,args.ssl)
     except:
         logging.error("Fatal error")
 

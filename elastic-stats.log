@@ -1,0 +1,56 @@
+21-May-19 19:21:35 - start
+21-May-19 19:24:12 - Starting new HTTP connection (1): 192.168.96.244:9200
+21-May-19 19:24:22 - GET http://192.168.96.244:9200/_cluster/health?format=json [status:N/A request:10.009s]
+Traceback (most recent call last):
+  File "C:\tools\Python\Python37\lib\site-packages\urllib3\connection.py", line 160, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "C:\tools\Python\Python37\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "C:\tools\Python\Python37\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+socket.timeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\tools\Python\Python37\lib\site-packages\elasticsearch\connection\http_urllib3.py", line 220, in perform_request
+    method, url, body, retries=Retry(False), headers=request_headers, **kw
+  File "C:\tools\Python\Python37\lib\site-packages\urllib3\connectionpool.py", line 641, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "C:\tools\Python\Python37\lib\site-packages\urllib3\util\retry.py", line 344, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "C:\tools\Python\Python37\lib\site-packages\urllib3\packages\six.py", line 686, in reraise
+    raise value
+  File "C:\tools\Python\Python37\lib\site-packages\urllib3\connectionpool.py", line 603, in urlopen
+    chunked=chunked)
+  File "C:\tools\Python\Python37\lib\site-packages\urllib3\connectionpool.py", line 355, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "C:\tools\Python\Python37\lib\http\client.py", line 1229, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "C:\tools\Python\Python37\lib\http\client.py", line 1275, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "C:\tools\Python\Python37\lib\http\client.py", line 1224, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "C:\tools\Python\Python37\lib\http\client.py", line 1016, in _send_output
+    self.send(msg)
+  File "C:\tools\Python\Python37\lib\http\client.py", line 956, in send
+    self.connect()
+  File "C:\tools\Python\Python37\lib\site-packages\urllib3\connection.py", line 183, in connect
+    conn = self._new_conn()
+  File "C:\tools\Python\Python37\lib\site-packages\urllib3\connection.py", line 165, in _new_conn
+    (self.host, self.timeout))
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPConnection object at 0x0000022A30F899B0>, 'Connection to 192.168.96.244 timed out. (connect timeout=10)')
+21-May-19 19:24:22 - > None
+21-May-19 19:24:23 - Starting new HTTP connection (2): 192.168.96.244:9200
+21-May-19 19:24:33 - start
+21-May-19 19:24:36 - Starting new HTTP connection (1): 172.17.79.99:9200
+21-May-19 19:24:36 - http://172.17.79.99:9200 "GET /_cluster/health?format=json HTTP/1.1" 401 435
+21-May-19 19:24:36 - GET http://172.17.79.99:9200/_cluster/health?format=json [status:401 request:0.030s]
+21-May-19 19:24:36 - > None
+21-May-19 19:24:36 - < {"error":{"root_cause":[{"type":"security_exception","reason":"missing authentication credentials for REST request [/_cluster/health?format=json]","header":{"WWW-Authenticate":"Basic realm=\"security\" charset=\"UTF-8\""}}],"type":"security_exception","reason":"missing authentication credentials for REST request [/_cluster/health?format=json]","header":{"WWW-Authenticate":"Basic realm=\"security\" charset=\"UTF-8\""}},"status":401}
+21-May-19 19:25:11 - start
+21-May-19 19:25:21 - Starting new HTTP connection (1): 172.17.79.99:9200
+21-May-19 19:25:21 - http://172.17.79.99:9200 "GET /_cluster/health?format=json HTTP/1.1" 401 435
+21-May-19 19:25:21 - GET http://172.17.79.99:9200/_cluster/health?format=json [status:401 request:0.022s]
+21-May-19 19:25:21 - > None
+21-May-19 19:25:21 - < {"error":{"root_cause":[{"type":"security_exception","reason":"missing authentication credentials for REST request [/_cluster/health?format=json]","header":{"WWW-Authenticate":"Basic realm=\"security\" charset=\"UTF-8\""}}],"type":"security_exception","reason":"missing authentication credentials for REST request [/_cluster/health?format=json]","header":{"WWW-Authenticate":"Basic realm=\"security\" charset=\"UTF-8\""}},"status":401}

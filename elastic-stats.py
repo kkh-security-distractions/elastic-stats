@@ -95,8 +95,8 @@ def my_function(node,attribute,hot,warm,cold,user,password,ssl):
                 bucket = index_bucket()
                 bucket.cluster_name = h2["cluster_name"]
                 bucket.index = bucket_name
-                bucket.first_index = index
-                bucket.last_index = index
+                bucket.first_index = index["index"]
+                bucket.last_index = first_index
                 all_buckets.append(bucket)
 
             # sum up the totals
@@ -141,7 +141,7 @@ if __name__== "__main__":
     parser = argparse.ArgumentParser(description='Generate Elasticsearch stats.')
     parser.add_argument('-n', '--node',
         action="store", dest="node",
-        help="node", default="192.168.96.244")
+        help="node", default="172.17.79.99")
     parser.add_argument('-f', '--format',
         action="store", dest="format",
         help="output format", default="csv")

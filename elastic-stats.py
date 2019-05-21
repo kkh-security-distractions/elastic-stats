@@ -28,6 +28,7 @@ class index_bucket:
         self.cold_bytes = 0
         self.first_index = ""
         self.last_index = ""
+        
     def __iter__(self):
         return iter([self.tmsp,self.cluster_name, self.index, self.indexCnt,
                 self.total_docs, self.total_shards, self.total_bytes, 

@@ -26,12 +26,15 @@ class index_bucket:
         self.cold_docs = 0
         self.cold_shards = 0
         self.cold_bytes = 0
+        self.first_index = ""
+        self.last_index = ""
     def __iter__(self):
         return iter([self.tmsp,self.cluster_name, self.index, self.indexCnt,
                 self.total_docs, self.total_shards, self.total_bytes, 
                 self.hot_docs, self.hot_shards, self.hot_bytes, 
                 self.warm_docs, self.warm_shards, self.warm_bytes, 
-                self.cold_docs, self.cold_shards, self.cold_bytes])
+                self.cold_docs, self.cold_shards, self.cold_bytes , 
+                self.first_index, self.last_index])
 
 
 
